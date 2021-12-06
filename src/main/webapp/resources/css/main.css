@@ -19,3 +19,7 @@ body {
     width: 25rem;
     margin-bottom: 2em
 }
+
+.ui-linkbutton a {
+    text-decoration: none;
+}

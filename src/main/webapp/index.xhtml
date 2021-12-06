@@ -15,6 +15,12 @@
                             <p>
                                 <h:outputText value="#{process.description}" />
                             </p>
+                            <f:facet name="footer" class="align-right">
+                                <p:linkButton icon="pi pi-send" value="#{dashboardPresenter.getStartButtonText(process)}" outcome="#{dashboardPresenter.startProcess(process)}">
+                                    <f:param name="processDefinitionKey" value="#{process.key}" />
+                                    <f:param name="callbackUrl" value="#{request.contextPath}/index.xhtml" />
+                                </p:linkButton>
+                            </f:facet>
                         </p:card>
                     </div>
                 </ui:repeat>

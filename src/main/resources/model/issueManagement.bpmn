@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_17tjixs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
-  <bpmn:process id="issueManagement" name="Störungsbeseitung" isExecutable="true">
+  <bpmn:process id="issueManagement" name="Störungsbeseitigung" isExecutable="true">
     <bpmn:documentation>Alle Störungen und Defekte können hierüber gemeldet werden.</bpmn:documentation>
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0ugil3h</bpmn:outgoing>
@@ -13,7 +13,9 @@
     <bpmn:scriptTask id="findTechnician" name="Techniker ermitteln" scriptFormat="groovy">
       <bpmn:incoming>Flow_0ugil3h</bpmn:incoming>
       <bpmn:outgoing>Flow_10q6gb2</bpmn:outgoing>
-      <bpmn:script>println "Dummy service"</bpmn:script>
+      <bpmn:script>def desc = execution.getVariable("description")
+def place = execution.getVariable("place")
+println "Es wurde eine Störung gemeldet: $desc -&gt; $place"</bpmn:script>
     </bpmn:scriptTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
