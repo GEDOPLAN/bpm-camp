@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_17tjixs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_17tjixs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:process id="issueManagement" name="Störungsbeseitigung" isExecutable="true">
     <bpmn:documentation>Alle Störungen und Defekte können hierüber gemeldet werden.</bpmn:documentation>
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0ugil3h</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0ugil3h" sourceRef="StartEvent_1" targetRef="findTechnician" />
-    <bpmn:endEvent id="Event_13qcyh2">
-      <bpmn:incoming>Flow_10q6gb2</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_10q6gb2" sourceRef="findTechnician" targetRef="Event_13qcyh2" />
-    <bpmn:scriptTask id="findTechnician" name="Techniker ermitteln" scriptFormat="groovy">
+    <bpmn:serviceTask id="findTechnician" name="Techniker ermitteln" camunda:expression="#{backendService.findTechnician()}" camunda:resultVariable="technician">
       <bpmn:incoming>Flow_0ugil3h</bpmn:incoming>
-      <bpmn:outgoing>Flow_10q6gb2</bpmn:outgoing>
-      <bpmn:script>def desc = execution.getVariable("description")
-def place = execution.getVariable("place")
-println "Es wurde eine Störung gemeldet: $desc -&gt; $place"</bpmn:script>
-    </bpmn:scriptTask>
+      <bpmn:outgoing>Flow_08v683m</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_08v683m" sourceRef="findTechnician" targetRef="resolveIssue" />
+    <bpmn:userTask id="resolveIssue" name="Störung beseitigen" camunda:assignee="#{technician}">
+      <bpmn:incoming>Flow_08v683m</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kmcn9s</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0dzuaby">
+      <bpmn:incoming>Flow_1kmcn9s</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1kmcn9s" sourceRef="resolveIssue" targetRef="Event_0dzuaby" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="issueManagement">
@@ -24,18 +26,25 @@ println "Es wurde eine Störung gemeldet: $desc -&gt; $place"</bpmn:script>
         <di:waypoint x="215" y="117" />
         <di:waypoint x="270" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_10q6gb2_di" bpmnElement="Flow_10q6gb2">
+      <bpmndi:BPMNEdge id="Flow_08v683m_di" bpmnElement="Flow_08v683m">
         <di:waypoint x="370" y="117" />
-        <di:waypoint x="432" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kmcn9s_di" bpmnElement="Flow_1kmcn9s">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="592" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_13qcyh2_di" bpmnElement="Event_13qcyh2">
-        <dc:Bounds x="432" y="99" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1eq0cqu_di" bpmnElement="findTechnician">
+      <bpmndi:BPMNShape id="Activity_0sgpxjq_di" bpmnElement="findTechnician">
         <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06nls7u_di" bpmnElement="resolveIssue">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0dzuaby_di" bpmnElement="Event_0dzuaby">
+        <dc:Bounds x="592" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
