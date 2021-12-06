@@ -1,9 +1,8 @@
 body {
-    background-image: url("/ctm/javax.faces.resource/Heide.jpg.xhtml?ln=images");
-    background-size: cover;
+    background-color: #f0f0f0;
     font-size: 12px;
-    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    color: #000000;  
+    font-family: Verdana, "Verdana CE", Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;
     margin: 10px;
 }
 
@@ -14,4 +13,9 @@ body {
 
 .align-right {
     text-align: right;
+}
+
+.start-card {
+    width: 25rem;
+    margin-bottom: 2em
 }
