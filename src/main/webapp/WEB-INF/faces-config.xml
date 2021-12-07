@@ -18,10 +18,34 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
+        <from-view-id>stuff/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>stoerung-pruefen</from-outcome>
+            <to-view-id>/issue/stoerung-pruefen.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>dashboard</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>stuff</from-outcome>
+            <to-view-id>/stuff/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>orga</from-outcome>
+            <to-view-id>/orga/index.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 </faces-config>

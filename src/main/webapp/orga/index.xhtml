@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <h:form>
+            <h3>Störungen</h3>
+            <p:dataTable value="#{processPresenter.history}" var="process">
+                <p:column headerText="Name">
+                    <h:outputText value="#{process.processDefinitionName}" />
+                </p:column>
+                <p:column headerText="gestartet">
+                    <h:outputText value="#{process.startTime}">
+                        <!-- Setting Timezone in Dockerfile doesn't work yet -->
+                        <f:convertDateTime type="both" timeZone="Europe/Berlin" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="beendet">
+                    <h:outputText value="#{process.endTime}">
+                        <!-- Setting Timezone in Dockerfile doesn't work yet -->
+                        <f:convertDateTime type="both" timeZone="Europe/Berlin" />
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -5,12 +5,26 @@
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <h:form>
+            <h3>Aufgaben für den Benutzer #{facesContext.externalContext.userPrincipal}</h3>
             <p:dataTable value="#{taskListPresenter.tasks}" var="task">
                 <p:column headerText="Name">
                     <h:outputText value="#{task.name}" />
                 </p:column>
-                <p:column headerText="Beschreibung">
+                <p:column headerText="erstellt">
+                    <h:outputText value="#{task.createTime}">
+                        <!-- Setting Timezone in Dockerfile doesn't work yet -->
+                        <f:convertDateTime type="both" timeZone="Europe/Berlin" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{ui['issueManagement.description']}">
                     <h:outputText value="#{taskListPresenter.getVariable(task, 'description')}" />
+                </p:column>
+                <p:column>
+                    <p:linkButton icon="pi pi-pencil" outcome="#{taskListPresenter.startTask(task)}">
+                        <f:param name="taskId" value="#{task.id}" />
+                        <f:param name="taskName" value="#{task.name}" />
+                        <f:param name="callbackUrl" value="#{request.contextPath}/stuff/index.xhtml" />
+                    </p:linkButton>
                 </p:column>
             </p:dataTable>
         </h:form>

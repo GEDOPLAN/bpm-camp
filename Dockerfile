@@ -1,5 +1,7 @@
 FROM camunda/camunda-bpm-platform:wildfly-7.16.0
 
+ENV TZ='Europe/Berlin'
+
 RUN rm /camunda/standalone/deployments/camunda-example-invoice-7.16.0.war
 RUN /camunda/bin/add-user.sh -a -u 'mike' -p 'password' -g 'stuff'
 RUN /camunda/bin/add-user.sh -a -u 'george' -p 'password' -g 'stuff'

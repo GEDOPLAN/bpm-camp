@@ -11,7 +11,7 @@
       <bpmn:outgoing>Flow_08v683m</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_08v683m" sourceRef="findTechnician" targetRef="resolveIssue" />
-    <bpmn:userTask id="resolveIssue" name="Störung beseitigen" camunda:assignee="#{technician}">
+    <bpmn:userTask id="resolveIssue" name="Störung beseitigen" camunda:formKey="stoerung-pruefen" camunda:assignee="#{technician}">
       <bpmn:incoming>Flow_08v683m</bpmn:incoming>
       <bpmn:outgoing>Flow_1kmcn9s</bpmn:outgoing>
     </bpmn:userTask>

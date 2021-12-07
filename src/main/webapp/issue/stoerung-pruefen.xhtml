@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../template.xhtml">
+    <ui:define name="metadata">
+        <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+    </ui:define>
+    <ui:define name="content">
+        <h:form>
+            <p:card style="width: 50rem; margin-bottom: 2em">
+                <f:facet name="title">
+                    <h:outputText value="#{param['taskName']}" />
+                </f:facet>
+                <div class="p-grid p-jc-start">
+                    <div class="p-col-4">
+                        <p:outputLabel for="description" value="#{ui['issueManagement.description']}" />
+                    </div>
+                    <div class="p-col-8">
+                        <h:outputText id="description" value="#{businessProcess.getVariable('description')}" />
+                    </div>
+                    <div class="p-col-4">
+                        <p:outputLabel for="place" value="#{ui['issueManagement.place']}" />
+                    </div>
+                    <div class="p-col-8">
+                        <h:outputText id="place" value="#{businessProcess.getVariable('place')}" />
+                    </div>
+                    <div class="p-col-4">
+                        <p:outputLabel for="notes" value="#{ui['issueManagement.notes']}" />
+                    </div>
+                    <div class="p-col-8">
+                        <p:inputTextarea id="notes" value="#{issueManagementPresenter.notes}" rows="6" cols="33" />
+                    </div>
+                </div>
+                <p:commandButton value="Störung behoben" action="#{camundaTaskForm.completeTask()}" ajax="false" />
+                <p:commandButton value="abbrechen" immediate="true" action="#{issueManagementPresenter.abort}" styleClass="ui-button-secondary" />
+            </p:card>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

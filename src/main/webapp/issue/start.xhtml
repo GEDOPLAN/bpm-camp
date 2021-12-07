@@ -30,7 +30,7 @@
                         <p:message for="place" />
                     </div>
                 </div>
-                <p:commandButton value="melden" action="#{camundaTaskForm.completeProcessInstanceForm()}" process="@form" update="@form" />
+                <p:commandButton value="melden" action="#{camundaTaskForm.completeProcessInstanceForm()}" ajax="false" />
                 <p:commandButton value="abbrechen" immediate="true" action="dashboard" styleClass="ui-button-secondary" />
             </p:card>
         </h:form>
