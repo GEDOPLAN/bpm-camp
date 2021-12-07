@@ -27,4 +27,20 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    <security-role>
+        <role-name>stuff</role-name>
+    </security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>all</web-resource-name>
+            <url-pattern>/stuff/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>stuff</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>
