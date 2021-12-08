@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <h:form>
             <h3>Aufgaben für den Benutzer #{facesContext.externalContext.userPrincipal}</h3>
             <p:dataTable value="#{taskListPresenter.tasks}" var="task">
-                <p:column headerText="Name">
+                <p:column headerText="#{ui['global.name']}">
                     <h:outputText value="#{task.name}" />
                 </p:column>
-                <p:column headerText="erstellt">
+                <p:column headerText="#{ui['task.list.created']}">
                     <h:outputText value="#{task.createTime}">
                         <!-- Setting Timezone in Dockerfile doesn't work yet -->
                         <f:convertDateTime type="both" timeZone="Europe/Berlin" />
