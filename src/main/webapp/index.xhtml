@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="template.xhtml">
     <ui:define name="content">
         <h:form>
@@ -10,15 +14,17 @@
                     <div class="p-col-3">
                         <p:card class="start-card">
                             <f:facet name="title">
-                                <h:outputText value="#{process.name}" />
+                                <h:outputText value="#{process.name}"/>
                             </f:facet>
                             <p>
-                                <h:outputText value="#{process.description}" />
+                                <h:outputText value="#{process.description}"/>
                             </p>
                             <f:facet name="footer" class="align-right">
-                                <p:linkButton icon="pi pi-send" value="#{dashboardPresenter.getStartButtonText(process)}" outcome="#{dashboardPresenter.startProcess(process)}">
-                                    <f:param name="processDefinitionKey" value="#{process.key}" />
-                                    <f:param name="callbackUrl" value="#{request.contextPath}/index.xhtml" />
+                                <p:linkButton icon="pi pi-send"
+                                              value="#{dashboardPresenter.getStartButtonText(process)}"
+                                              outcome="#{dashboardPresenter.startProcess(process)}">
+                                    <f:param name="processDefinitionKey" value="#{process.key}"/>
+                                    <f:param name="callbackUrl" value="#{request.contextPath}/index.xhtml"/>
                                 </p:linkButton>
                             </f:facet>
                         </p:card>
